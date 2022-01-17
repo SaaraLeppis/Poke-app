@@ -1,5 +1,7 @@
 # Pokemon App with React and Component library
 
+First project to use Hooks.
+
 ## Installing React Bootsrap
 
 ```shell
