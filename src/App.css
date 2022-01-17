@@ -1,0 +1,7 @@
+.change_color {
+  background-color: orange !important;
+}
+/*use important as less as possible, like never */
+body {
+  background-color: rgba(0, 255, 255, 0.699);
+}
