@@ -1,10 +1,18 @@
-
 import React from 'react';
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
 
-function App(props) {
+
+function App() {
   return (
     <div>
-      Pokemons will be here
+      <Navbar expand="lg" variant="dark" bg="dark">
+        <Container>
+          <Navbar.Brand href="#">Pokemons</Navbar.Brand>
+        </Container>
+      </Navbar>
+
+
     </div>
   );
 }
