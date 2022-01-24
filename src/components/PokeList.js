@@ -13,7 +13,7 @@ const PokeList = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        axios.get("https://pokeapi.co/api/v2/pokemon/?limit=10&offset=20")
+        axios.get("https://pokeapi.co/api/v2/pokemon/")
             .then((res) => {
                 const fetches = res.data.results.map((p) => axios.get(p.url).then((res) => res.data));
 
