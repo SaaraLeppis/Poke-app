@@ -1,6 +1,11 @@
 # Pokemon App with React and Component library
 
-First project to use Hooks.
+This is class room project @Helsinki Business College.
+Second set of learning React just started and here we use Hooks for the first time. We also use Bootstrap for styling - that's also first time.
+
+## Whats the project about
+
+We use poke.api to get data: picture and name of Pokemon to a card.
 
 ## Installing React Bootsrap
 

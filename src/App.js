@@ -8,15 +8,24 @@ import Row from 'react-bootstrap/Row';
 import axios from 'axios';
 
 import './App.css'
+import { Spinner } from 'react-bootstrap';
 
-function App() {
+const App = () => {
   const [pokemons, setPokemons] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("https://pokeapi.co/api/v2/pokemon/")
-      .then((res) => setPokemons(res.data.results));
+    axios.get("https://pokeapi.co/api/v2/pokemon/?limit=10&offset=20")
+      .then((res) => {
+        const fetches = res.data.results.map((p) => axios.get(p.url).then((res) => res.data));
+
+
+        Promise.all(fetches).then((data) => {
+          setPokemons(data);
+          setIsLoading(false);
+        });
+      });
   }, []);
-  console.log("some state", pokemons);
 
   return (
     <div>
@@ -28,23 +37,22 @@ function App() {
       <Container>
         <Row xs={2} md={4} lg={5} className="justify-content-between my-5 d-flex gap-3">
           {/* my-f = margin y 5 // d-flex = display flex // gap-3 = gap between cards 1 rem*/}
-          {pokemons.map((p) => (
-            <li>{p.name}</li>))}
-          <Card bg="dark" className='text-white' style={{ width: '18rem' }}>
-            <Card.Img variant="top" src="https://www.radiatedaily.com/wp-content/uploads/2016/12/Green-Wallpaper-29.jpg" />
-            <Card.Body>
-              <Card.Title>{pokemons.results[0].name}</Card.Title>
-
-              <Card.Text>
-                Learning to use Hooks. And generating pokemon Cards from api.
-              </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
-            </Card.Body>
-          </Card>
-
-
+          {isLoading && (<Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading ... </span></Spinner>
+          )}
+          {/*{pokemons.map((p) => (
+            <li>{p.name}</li>))}*/}
+          {!isLoading && pokemons.map((pokemon) => (
+            <Card key={pokemon.id} bg="dark" className='text-white text-center' style={{ width: '18rem' }}>
+              <Card.Body>
+                <Card.Img variant="top" src={pokemon.sprites.other.dream_world.front_default} />
+                <Card.Title>{pokemon.name}</Card.Title>
+              </Card.Body>
+            </Card>
+          ))}
         </Row>
       </Container>
+      <Button variant="primary">Get next 20</Button>
 
 
     </div >
