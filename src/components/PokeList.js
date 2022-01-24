@@ -9,20 +9,28 @@ import PokeCard from './PokeCard';
 import Loader from './Loader';
 
 const PokeList = () => {
-    const [pokemons, setPokemons] = useState();
+    const [pokemons, setPokemons] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [nextPokemons, setNextPokemons] = useState("https://pokeapi.co/api/v2/pokemon")
 
-    useEffect(() => {
-        axios.get("https://pokeapi.co/api/v2/pokemon/")
-            .then((res) => {
-                const fetches = res.data.results.map((p) => axios.get(p.url).then((res) => res.data));
+    useEffect(() => { getPokemons() }, []);
 
-                Promise.all(fetches).then((data) => {
-                    setPokemons(data);
-                    setIsLoading(false);
-                });
-            });
-    }, []);
+    const getPokemons = () => {
+        axios.get(nextPokemons).catch(error => {
+            console.log(error);
+        }).then((res) => {
+            const fetches = res.data.results.map((p) => axios.get(p.url).then((res) => res.data));
+            console.log(res.data);
+
+            setNextPokemons(res.data.next);
+
+            Promise.all(fetches).then((data) => {
+                setPokemons((prevState) => [...prevState, ...data]);
+
+            }); setIsLoading(false);
+        });
+    };
+
 
     return (
         <div>
@@ -33,14 +41,17 @@ const PokeList = () => {
                     )}
 
                     {!isLoading && pokemons.map((pokemon) => (
+
                         <PokeCard
                             key={pokemon.name}
+
+                            type={pokemon.types[0].type.name}
                             name={pokemon.name}
                             image={pokemon.sprites.other.dream_world.front_default} />
                     ))}
                 </Row>
             </Container>
-            <Button variant="primary">Get next 20</Button>
+            <Button variant="primary" size="lg" onClick={getPokemons}>Load more</Button>
         </div >
     );
 }

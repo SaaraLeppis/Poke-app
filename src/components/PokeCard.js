@@ -2,14 +2,20 @@ import React from 'react';
 
 import Card from 'react-bootstrap/Card';
 
-function PokeCard({ key, name, image }) {
+function PokeCard({ name, image, type }) {
     return (
-        <Card key={key} bg="dark" className='text-white text-center' style={{ width: '18rem' }}>
-            <Card.Body>
+        <Card bg={
+            type === "grass" ? "success" :
+                type === "fire" ? "danger" :
+                    type === "bug" ? "secondary" :
+                        "light"} className='text-white text-center' style={{ width: '18rem' }}>
+            < Card.Body >
                 <Card.Img variant="top" src={image} />
-                <Card.Title>{name}</Card.Title>
-            </Card.Body>
-        </Card>
+                <Card.Title bg="success">{name}</Card.Title>
+                <Card.Title>{type}</Card.Title>
+
+            </Card.Body >
+        </Card >
     );
 }
 

@@ -7,8 +7,9 @@ main {
   height: calc(100vh - 56px);
 }
 .hero {
-  background: url("https://source.unsplash.com/dkFJST9zZZo/") no-repeat fixed
+  background: url("./assets/jay-dkFJST9zZZo-unsplash.jpg") no-repeat fixed
     center center/cover;
   height: 100%;
-  color: white;
+  color: #ffcb05;
+  text-shadow: -3px 0 #2a75bb, 0 3px #2a75bb, 3px 0 #2a75bb, 0 -3px #2a75bb;
 }
