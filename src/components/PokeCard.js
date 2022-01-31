@@ -1,9 +1,11 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import { LinkContainer } from "react-router-bootstrap"
+
 
 import Card from 'react-bootstrap/Card';
 
-function PokeCard({ name, image, type }) {
+function PokeCard({ name, image, type, pokemonName }) {
     return (
         <Card bg={
             type === "grass" ? "success" :
@@ -13,8 +15,9 @@ function PokeCard({ name, image, type }) {
             <Card.Header bg="success">{name}</Card.Header>
             < Card.Body >
                 <Card.Img variant="top" src={image} />
-                <Button variant="outline-secondary" size="sm">Details</Button>
-
+                <LinkContainer to={`/${pokemonName}`} >
+                    <Button variant="outline-secondary" size="sm">Details</Button>
+                </LinkContainer>
                 <Card.Title>{type}</Card.Title>
 
             </Card.Body >

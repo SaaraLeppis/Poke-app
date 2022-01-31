@@ -46,7 +46,8 @@ const PokeList = () => {
 
                             type={pokemon.types[0].type.name}
                             name={pokemon.name}
-                            image={pokemon.sprites.other.dream_world.front_default} />
+                            image={pokemon.sprites.other.dream_world.front_default}
+                            pokemonName={pokemon.name} />
                     ))}
                 </Row>
             </Container>
