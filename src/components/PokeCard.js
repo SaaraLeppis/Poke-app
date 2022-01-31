@@ -2,7 +2,6 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import { LinkContainer } from "react-router-bootstrap"
 
-
 import Card from 'react-bootstrap/Card';
 
 function PokeCard({ name, image, type, pokemonName }) {
