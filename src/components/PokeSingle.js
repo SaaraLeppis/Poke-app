@@ -4,7 +4,6 @@ import axios from 'axios';
 import Loader from './Loader';
 import { Button } from 'react-bootstrap';
 
-
 const PokeSingle = () => {
     let { pokemonName } = useParams();
     let navigate = useNavigate();
