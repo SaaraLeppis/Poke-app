@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-import './App.css'
-
 import PokeList from './components/PokeList';
+
 import Home from './components/Home';
 import Layout from './components/Layout';
+import PokeSingle from './components/PokeSingle';
+import './App.css'
 
 const App = () => {
 
@@ -13,8 +13,10 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="/" element={<Home />} />
+          <Route index element={<Home />} />
           <Route path="pokelist" element={<PokeList />} />
+          <Route path=":pokemonName" element={<PokeSingle />} />
+
         </Route>
       </Routes>
     </BrowserRouter >

@@ -31,7 +31,6 @@ const PokeList = () => {
         });
     };
 
-
     return (
         <div>
             <Container>

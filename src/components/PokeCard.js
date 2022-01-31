@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 
 import Card from 'react-bootstrap/Card';
 
@@ -9,9 +10,11 @@ function PokeCard({ name, image, type }) {
                 type === "fire" ? "danger" :
                     type === "bug" ? "secondary" :
                         "light"} className='text-white text-center' style={{ width: '18rem' }}>
+            <Card.Header bg="success">{name}</Card.Header>
             < Card.Body >
                 <Card.Img variant="top" src={image} />
-                <Card.Title bg="success">{name}</Card.Title>
+                <Button variant="outline-secondary" size="sm">Details</Button>
+
                 <Card.Title>{type}</Card.Title>
 
             </Card.Body >
