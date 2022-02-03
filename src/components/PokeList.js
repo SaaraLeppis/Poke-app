@@ -8,10 +8,10 @@ import axios from 'axios';
 import PokeCard from './PokeCard';
 import Loader from './Loader';
 
-const PokeList = () => {
+const PokeList = ({ favHandler, favourites }) => {
     const [pokemons, setPokemons] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [nextPokemons, setNextPokemons] = useState("https://pokeapi.co/api/v2/pokemon")
+    const [nextPokemons, setNextPokemons] = useState("https://pokeapi.co/api/v2/pokemon");
 
     useEffect(() => { getPokemons() }, []);
 
@@ -29,6 +29,7 @@ const PokeList = () => {
 
             }); setIsLoading(false);
         });
+
     };
 
     return (
@@ -43,11 +44,13 @@ const PokeList = () => {
 
                         <PokeCard
                             key={pokemon.name}
-
                             type={pokemon.types[0].type.name}
                             name={pokemon.name}
                             image={pokemon.sprites.other.dream_world.front_default}
-                            pokemonName={pokemon.name} />
+                            pokemonName={pokemon.name}
+                            fav={favourites.some(item => item.name == pokemon.name)}
+
+                            favClick={() => favHandler(pokemon)} />
                     ))}
                 </Row>
             </Container>

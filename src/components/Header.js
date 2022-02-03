@@ -20,6 +20,9 @@ const Header = props => {
                         <LinkContainer to="pokelist">
                             <Nav.Link >POKELIST</Nav.Link>
                         </LinkContainer>
+                        <LinkContainer to="favourites">
+                            <Nav.Link >FAVOURITES</Nav.Link>
+                        </LinkContainer>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

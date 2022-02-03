@@ -49,6 +49,12 @@ npm install -S react-router-bootsrap
 used:
 **Linkcontainer**
 
+## React Bootstrap icons
+
+```shell
+npm install react-bootstrap-icons --save
+```
+
 ## Background photo on Home page
 
 Photo by <a href="https://unsplash.com/@jmanalog?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Jay</a> on <a href="https://unsplash.com/s/photos/pokemon?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
