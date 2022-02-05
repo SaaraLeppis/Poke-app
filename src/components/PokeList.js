@@ -12,30 +12,34 @@ const PokeList = ({ favHandler, favourites }) => {
     const [pokemons, setPokemons] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [nextPokemons, setNextPokemons] = useState("https://pokeapi.co/api/v2/pokemon");
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => { getPokemons() }, []);
 
     const getPokemons = () => {
-        axios.get(nextPokemons).catch(error => {
-            console.log(error);
-        }).then((res) => {
-            const fetches = res.data.results.map((p) => axios.get(p.url).then((res) => res.data));
-            console.log(res.data);
+        axios
+            .get(nextPokemons)
+            .catch(error => {
+                console.log(error);
+            })
+            .then((res) => {
+                const fetches = res.data.results.map((p) => axios.get(p.url).then((res) => res.data));
 
-            setNextPokemons(res.data.next);
+                setNextPokemons(res.data.next);
 
-            Promise.all(fetches).then((data) => {
-                setPokemons((prevState) => [...prevState, ...data]);
+                Promise.all(fetches).then((data) => {
+                    setPokemons((prevState) => [...prevState, ...data]);
 
-            }); setIsLoading(false);
-        });
-
+                }); setIsLoading(false);
+            });
     };
 
     return (
         <div>
             <Container>
-                <Row xs={2} md={4} lg={5} className="justify-content-between my-5 d-flex gap-3">
+                <Row
+                    xs={2}
+                    md={4}
+                    lg={5} className="justify-content-between my-5 d-flex gap-3">
                     {/* my-f = margin y 5 // d-flex = display flex // gap-3 = gap between cards 1 rem*/}
                     {isLoading && (<Loader />
                     )}
@@ -48,8 +52,7 @@ const PokeList = ({ favHandler, favourites }) => {
                             name={pokemon.name}
                             image={pokemon.sprites.other.dream_world.front_default}
                             pokemonName={pokemon.name}
-                            fav={favourites.some(item => item.name == pokemon.name)}
-
+                            fav={favourites.some(item => item.name === pokemon.name)}
                             favClick={() => favHandler(pokemon)} />
                     ))}
                 </Row>
