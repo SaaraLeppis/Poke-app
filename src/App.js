@@ -11,31 +11,32 @@ import './App.css'
 const App = () => {
   const [favourites, setFavourites] = useState([]);
 
-  const getArray = JSON.parse(localStorage.getItem('favourites') || '0');
+  const getArray = JSON.parse(localStorage.getItem('favourites'))
   useEffect(() => {
-    if (getArray != 0) {
+    setFavourites(getArray)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  // const getArray = JSON.parse(localStorage.getItem('favourites') || '0');
+  /*useEffect(() => {
+    if (getArray !== 0) {
       setFavourites(getArray);
     }
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])*/
 
   useEffect(() => {
     localStorage.setItem('favourites', JSON.stringify(favourites));
   }, [favourites]);
 
   const favHandler = (pokemon) => {
-    let item = favourites.some(item => item.id = pokemon.id)
+    let item = favourites.some(item => item.id === pokemon.id)
     if (!item) {
-      setFavourites((prevState) => [...prevState, pokemon]);
-      localStorage.setItem(pokemon.name, JSON.stringyfy(pokemon))
+      setFavourites(favourites => [...favourites, pokemon]);
     } else {
       const newArray = [...favourites];
-      console.log(newArray);
       newArray.splice(newArray.findIndex(item => item.id === pokemon.id), 1);
       setFavourites(newArray);
-      localStorage.removeItem(pokemon.name)
     }
-    console.log("magic")
-    console.log(favourites);
   }
 
   return (

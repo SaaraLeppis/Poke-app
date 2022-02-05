@@ -19,7 +19,7 @@ const FavList = ({ favHandler, favourites }) => {
                             name={pokemon.name}
                             image={pokemon.sprites.other.dream_world.front_default}
                             pokemonName={pokemon.name}
-                            fav={favourites.some(item => item.name == pokemon.name)}
+                            fav={favourites.some(item => item.name === pokemon.name)}
                             favClick={() => favHandler(pokemon)} />
                     ))}
                 </Row>

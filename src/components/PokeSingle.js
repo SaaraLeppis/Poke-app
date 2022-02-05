@@ -19,7 +19,6 @@ const PokeSingle = () => {
             .then((res) => {
                 setPokemon(res.data);
                 setIsLoading(false);
-                console.log(pokemon);
             });
     }, []);
 
@@ -28,7 +27,7 @@ const PokeSingle = () => {
             {isLoading && <Loader />}
             {!isLoading && (
                 <div>
-                    <img src={pokemon.sprites.other.dream_world.front_default} />
+                    <img src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name} />
                     <p>Base experience: {pokemon.base_experience}</p>
                     <p>Height: {pokemon.height}0 cm</p>
                     <p>Weight: {pokemon.weight} g</p>
